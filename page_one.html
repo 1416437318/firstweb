@@ -7,5 +7,17 @@
 </head>
 <body>
     <h2>超级大傻蛋</h2>
+    <script>
+    // 定义正确的密码
+    const correctPassword = '123456';
+    // 弹出输入框让用户输入密码
+    const userInput = prompt('请输入密码：');
+    // 判断用户输入的密码是否正确
+    if (userInput!== correctPassword) {
+      alert('密码错误，无法访问页面！');
+      // 如果密码错误，跳转到一个提示页面或执行其他操作，这里直接关闭页面
+      window.close();
+    }
+  </script>
 </body>
 </html>   
