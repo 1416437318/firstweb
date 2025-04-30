@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+   #newcontent
+   {
+    display: none;
+
+
+   }
+   #another_page
+   {
+    display: none;
+
+   }
+    #color1
+    {
+        color: red;
+
+    }
+    #color2
+    {
+        color: rgb(241, 85, 207);
+
+    }
+    #font_p1
+    {
+        font-family:"楷书";
+    }
+</style>
+
+</head>
+<body >
+
+    <h1 style="display:flex;justify-content: center;" id="color1">大大的标题</h1>
+    <a href="https://ts3.tc.mm.bing.net/th/id/OIP-C.AzhA9vb0oLa72mOIzMpsdwHaH-?rs=1&pid=ImgDetMain">点我跳转网页</a>
+    <div style="display: flex;">
+        <button onclick="window.location.href='page_one.html'"> <img src="https://ts3.tc.mm.bing.net/th/id/OIP-C.AzhA9vb0oLa72mOIzMpsdwHaH-?rs=1&pid=ImgDetMain" 
+    alt="图片示例"
+    width="300"
+    height="300"
+    >
+</button>
+    <div>
+    <p id="color2" > helloworld!</p>
+    <p id="color2" > helloworld!</p>
+    <p id="color2" > helloworld!</p>
+    <p id="color2" > helloworld!</p>
+    <p id="color2" > helloworld!</p>
+    <p id="color2" > helloworld!</p>
+    <p id="color2" > 一个平平无奇的文本哦</p>
+    </div>
+</div>
+<div id="newcontent"><h2>大傻蛋</h2></div>
+<div id="another_page"><h2>超级大傻蛋</h2></div>
+<script>
+     function show1()
+{
+    var another= document.getElementById('.another_page');
+    newcontext.style.display='block';
+
+}
+ function show()
+{
+    var newcontext=document.getElementById('newcontent');
+    newcontext.style.display='block';
+
+}</script>
+</body>
+</html>
