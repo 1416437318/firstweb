@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>办学特色 - 上饶师范学院数字技术应用产业学院</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="微信图片_20250626190217_590.jpg" type="image/x-icon">
+    <link rel="icon" href="微信图片_20250626190217_590.jpg" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        neutral: '#F5F7FA',
+                        dark: '#1E293B',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        sans: ['Noto Sans SC', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .number-animation {
+                transition: all 2s ease-out;
+            }
+            .feature-icon {
+                transition: transform 0.3s ease;
+            }
+            .feature-card:hover .feature-icon {
+                transform: scale(1.1);
+            }
+            .timeline-item {
+                position: relative;
+                padding-left: 2rem;
+                margin-left: 1rem;
+            }
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0.5rem;
+                width: 0.75rem;
+                height: 0.75rem;
+                border-radius: 50%;
+                background-color: #165DFF;
+            }
+            .timeline-item::after {
+                content: '';
+                position: absolute;
+                left: 0.375rem;
+                top: 1.5rem;
+                bottom: -1rem;
+                width: 0.125rem;
+                background-color: #E2E8F0;
+            }
+            .timeline-item:last-child::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-dark bg-white">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full z-50 bg-primary shadow-lg transition-all duration-300">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                    <i class="fa fa-graduation-cap text-white text-xl"></i>
+                </div>
+                <span class="text-xl font-bold font-inter text-white">数字技术应用产业学院</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-white hover:text-secondary transition-colors">首页</a>
+                <a href="overview.html" class="text-white hover:text-secondary transition-colors">学院概况</a>
+                <a href="features.html" class="text-white hover:text-secondary transition-colors font-medium border-b-2 border-secondary">办学特色</a>
+                <a href="majors.html" class="text-white hover:text-secondary transition-colors">专业设置</a>
+                <a href="research.html" class="text-white hover:text-secondary transition-colors">科研成果</a>
+                <a href="students.html" class="text-white hover:text-secondary transition-colors">学生发展</a>
+                <a href="future.html" class="text-white hover:text-secondary transition-colors">未来规划</a>
+                <a href="contact.html" class="text-white hover:text-secondary transition-colors">联系我们</a>
+            </div>
+            
+            <!-- 功能按钮 -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="overview.html" class="bg-white hover:bg-gray-100 text-primary px-6 py-2 rounded-full font-medium transition-all shadow-lg flex items-center justify-center">
+                    了解学院 <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+                <a href="contact.html" class="bg-transparent hover:bg-white/10 text-white border-2 border-white px-6 py-2 rounded-full font-medium transition-all flex items-center justify-center">
+                    联系我们 <i class="fa fa-envelope ml-2"></i>
+                </a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="text-dark hover:text-primary py-2 border-b border-gray-100">首页</a>
+                <a href="overview.html" class="text-dark hover:text-primary py-2 border-b border-gray-100">学院概况</a>
+                <a href="features.html" class="text-dark hover:text-primary py-2 border-b border-gray-100 text-primary font-medium">办学特色</a>
+                <a href="majors.html" class="text-dark hover:text-primary py-2 border-b border-gray-100">专业设置</a>
+                <a href="research.html" class="text-dark hover:text-primary py-2 border-b border-gray-100">科研成果</a>
+                <a href="students.html" class="text-dark hover:text-primary py-2 border-b border-gray-100">学生发展</a>
+                <a href="future.html" class="text-dark hover:text-primary py-2 border-b border-gray-100">未来规划</a>
+                <a href="contact.html" class="text-dark hover:text-primary py-2 border-b border-gray-100">联系我们</a>
+                <div class="flex space-x-4 pt-2">
+                    <a href="overview.html" class="bg-white hover:bg-gray-100 text-primary px-4 py-2 rounded-full font-medium transition-all shadow-lg flex items-center justify-center w-full">
+                        了解学院 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="contact.html" class="bg-transparent hover:bg-primary/10 text-primary border-2 border-primary px-4 py-2 rounded-full font-medium transition-all flex items-center justify-center w-full">
+                        联系我们 <i class="fa fa-envelope ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 面包屑导航 -->
+    <section class="pt-24 pb-8 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-sm">
+                <a href="index.html" class="text-gray-600 hover:text-primary">首页</a>
+                <i class="fa fa-angle-right mx-2 text-gray-400"></i>
+                <span class="text-primary font-medium">办学特色</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页面标题 -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-[clamp(2rem,4vw,3rem)] font-bold font-inter text-dark mb-4">办学特色</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">
+                数字技术应用产业学院依托政校企协同创新平台，构建特色鲜明的人才培养体系
+            </p>
+        </div>
+    </section>
+
+    <!-- 特色总览 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white rounded-xl shadow-lg p-8 border-t-4 border-primary card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 feature-icon">
+                        <i class="fa fa-handshake-o text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">政校企协同育人</h3>
+                    <p class="text-gray-600">
+                        与信州区人民政府、江西移动上饶分公司等建立战略合作关系，共同制定人才培养方案，共建实训基地，实现人才培养与产业需求无缝对接。
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl shadow-lg p-8 border-t-4 border-primary card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 feature-icon">
+                        <i class="fa fa-cogs text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">产教融合课程体系</h3>
+                    <p class="text-gray-600">
+                        课程设置紧跟数字产业发展趋势，引入企业真实项目案例，开设大数据分析、人工智能应用、区块链技术等前沿课程，培养学生实践能力。
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl shadow-lg p-8 border-t-4 border-primary card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 feature-icon">
+                        <i class="fa fa-users text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">双师型教学团队</h3>
+                    <p class="text-gray-600">
+                        组建由高校教授、企业技术专家组成的双师型教学团队，既有扎实的理论基础，又有丰富的行业经验，确保教学内容与产业需求同步。
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl shadow-lg p-8 border-t-4 border-primary card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 feature-icon">
+                        <i class="fa fa-building text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">产业实训基地</h3>
+                    <p class="text-gray-600">
+                        建有云计算实训室、人工智能实验室、数字媒体技术实训室等多个专业实训基地，配备先进的教学设备，为学生提供真实的产业环境。
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl shadow-lg p-8 border-t-4 border-primary card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 feature-icon">
+                        <i class="fa fa-rocket text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">创新创业教育</h3>
+                    <p class="text-gray-600">
+                        开设创新创业课程，举办创新创业大赛，建立创新创业孵化基地，鼓励学生参与科研项目和创新创业实践，培养创新精神和创业能力。
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl shadow-lg p-8 border-t-4 border-primary card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 feature-icon">
+                        <i class="fa fa-globe text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">国际化视野培养</h3>
+                    <p class="text-gray-600">
+                        与国外高校和科研机构建立合作关系，开展学术交流和学生交换项目，邀请国际专家讲学，拓宽学生的国际视野。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 培养模式 -->
+    <section class="py-16 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold font-inter text-dark mb-4">特色培养模式</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    采用"3+1"培养模式，实现理论教学与实践教学的有机结合
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-primary">1-2年</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">基础课程学习</h3>
+                    <p class="text-gray-600">
+                        系统学习计算机科学、数学和数字技术基础理论知识，构建扎实的专业基础。
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-primary">3年</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">专业课程学习</h3>
+                    <p class="text-gray-600">
+                        深入学习数字技术专业课程，结合企业真实项目案例进行实践教学，培养专业技能。
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-primary">4年</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">企业实习实训</h3>
+                    <p class="text-gray-600">
+                        在合作企业进行为期一年的实习实训，参与实际项目开发，积累项目经验，提升就业竞争力。
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-primary">全过程</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">创新创业教育</h3>
+                    <p class="text-gray-600">
+                        贯穿整个培养过程的创新创业教育，培养学生的创新意识和创业能力，鼓励学生自主创业。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 校企合作 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold font-inter text-dark mb-4">校企合作</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    与行业领先企业建立深度合作关系，共同推进人才培养和产业发展
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <img src="https://picsum.photos/id/180/800/600" alt="校企合作签约仪式" class="w-full h-auto rounded-xl shadow-lg">
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">政校企协同创新机制</h3>
+                    <p class="text-gray-600 mb-6">
+                        学院与信州区人民政府、江西移动上饶分公司、上饶大数据产业园等建立了紧密的合作关系，形成了"政府引导、学校主体、企业参与"的协同创新机制。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-2 mr-4">
+                                <i class="fa fa-check text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">共建实训基地</h4>
+                                <p class="text-gray-600">与企业共建云计算实训室、人工智能实验室等，为学生提供真实的产业环境。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-2 mr-4">
+                                <i class="fa fa-check text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">联合培养师资</h4>
+                                <p class="text-gray-600">企业技术专家参与教学，学校教师到企业实践，实现师资队伍的优势互补。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-2 mr-4">
+                                <i class="fa fa-check text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">共同开发课程</h4>
+                                <p class="text-gray-600">根据产业需求，校企共同开发专业课程和教材，确保教学内容与产业需求同步。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-2 mr-4">
+                                <i class="fa fa-check text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">合作开展科研</h4>
+                                <p class="text-gray-600">校企合作开展科研项目，推动科技成果转化，服务地方经济发展。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-2 mr-4">
+                                <i class="fa fa-check text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">实习就业合作</h4>
+                                <p class="text-gray-600">企业为学生提供实习和就业机会，优先录用学院毕业生，实现人才培养与就业的无缝对接。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-8 text-center">主要合作企业</h3>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="bg-white rounded-xl shadow-md p-6 flex items-center justify-center h-32 card-hover">
+                        <span class="text-lg font-bold text-dark">江西移动上饶分公司</span>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 flex items-center justify-center h-32 card-hover">
+                        <span class="text-lg font-bold text-dark">上饶大数据产业园</span>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 flex items-center justify-center h-32 card-hover">
+                        <span class="text-lg font-bold text-dark">江西贪玩信息技术有限公司</span>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 flex items-center justify-center h-32 card-hover">
+                        <span class="text-lg font-bold text-dark">上饶市智慧城市建设有限公司</span>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 flex items-center justify-center h-32 card-hover">
+                        <span class="text-lg font-bold text-dark">江西爱驰汽车有限公司</span>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 flex items-center justify-center h-32 card-hover">
+                        <span class="text-lg font-bold text-dark">江西晶科能源有限公司</span>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 flex items-center justify-center h-32 card-hover">
+                        <span class="text-lg font-bold text-dark">上饶市信州区数字经济产业发展有限公司</span>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 flex items-center justify-center h-32 card-hover">
+                        <span class="text-lg font-bold text-dark">江西耐普矿机新材料股份有限公司</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 实训基地 -->
+    <section class="py-16 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold font-inter text-dark mb-4">实训基地</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    建有多个现代化实训基地，为学生提供优质的实践教学环境
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="relative h-48">
+                        <img src="https://picsum.photos/id/180/600/400" alt="云计算实训室" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">云计算实训室</h3>
+                        <p class="text-gray-600">
+                            配备高性能服务器和云计算平台，可开展云架构设计、云安全管理、大数据处理等实践教学。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="relative h-48">
+                        <img src="https://picsum.photos/id/160/600/400" alt="人工智能实验室" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">人工智能实验室</h3>
+                        <p class="text-gray-600">
+                            配备GPU服务器和人工智能开发平台，可开展机器学习、深度学习、计算机视觉等前沿技术研究与实践。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="relative h-48">
+                        <img src="https://picsum.photos/id/163/600/400" alt="数字媒体技术实训室" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">数字媒体技术实训室</h3>
+                        <p class="text-gray-600">
+                            配备专业图形工作站和数字媒体制作软件，可开展UI/UX设计、虚拟现实开发、影视后期制作等实践教学。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 发展历程 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold font-inter text-dark mb-4">发展历程</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    数字技术应用产业学院的发展历程与成长足迹
+                </p>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2020年3月</h3>
+                    <p class="text-gray-600">
+                        上饶师范学院与信州区人民政府、江西移动上饶分公司签署合作协议，共建数字技术应用产业学院
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2020年9月</h3>
+                    <p class="text-gray-600">
+                        学院正式揭牌成立，首批招生数字媒体技术、大数据技术与应用两个专业，共招收学生120人
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2021年6月</h3>
+                    <p class="text-gray-600">
+                        云计算实训室建成并投入使用，为学生提供了先进的云计算实践教学环境
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2021年12月</h3>
+                    <p class="text-gray-600">
+                        与上饶大数据产业园建立战略合作关系，共建校外实习实训基地
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2022年5月</h3>
+                    <p class="text-gray-600">
+                        人工智能实验室建成，引入企业项目，开展产学研合作
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2022年9月</h3>
+                    <p class="text-gray-600">
+                        新增人工智能技术应用专业，招生规模扩大到200人
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2023年3月</h3>
+                    <p class="text-gray-600">
+                        数字媒体技术专业被评为省级特色专业建设点
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2023年10月</h3>
+                    <p class="text-gray-600">
+                        举办首届数字技术应用产业发展论坛，邀请行业专家共商产业发展与人才培养
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2024年6月</h3>
+                    <p class="text-gray-600">
+                        首届毕业生就业率达到95%，其中50%以上在数字产业相关企业就业
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2024年12月</h3>
+                    <p class="text-gray-600">
+                        与江西贪玩信息技术有限公司等企业建立深度合作关系，共建产业学院
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2025年5月</h3>
+                    <p class="text-gray-600">
+                        数字技术应用产业学院新校区建成并投入使用，办学条件进一步提升
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成果展示 -->
+    <section class="py-16 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold font-inter text-dark mb-4">办学成果</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    近年来学院在人才培养、教学改革、科研创新等方面取得的显著成果
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="text-4xl font-bold text-primary mb-2 number-animation">95%</div>
+                    <p class="text-gray-600">毕业生就业率</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="text-4xl font-bold text-primary mb-2 number-animation">12</div>
+                    <p class="text-gray-600">省级以上科研项目</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="text-4xl font-bold text-primary mb-2 number-animation">32</div>
+                    <p class="text-gray-600">校企合作企业</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="text-4xl font-bold text-primary mb-2 number-animation">56</div>
+                    <p class="text-gray-600">学生竞赛获奖</p>
+                </div>
+            </div>
+            
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-8 text-center">学生竞赛获奖情况</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-trophy text-yellow-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">全国大学生数学建模竞赛</h4>
+                                <p class="text-gray-500">国家级二等奖</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">
+                            2024年，我院学生团队在全国大学生数学建模竞赛中荣获国家级二等奖。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-trophy text-gray-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">中国大学生计算机设计大赛</h4>
+                                <p class="text-gray-500">国家级三等奖</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">
+                            2024年，我院学生团队在中国大学生计算机设计大赛中荣获国家级三等奖。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-trophy text-yellow-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">全国大学生人工智能应用技术大赛</h4>
+                                <p class="text-gray-500">国家级二等奖</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">
+                            2023年，我院学生团队在全国大学生人工智能应用技术大赛中荣获国家级二等奖。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-trophy text-gray-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">蓝桥杯全国软件和信息技术专业人才大赛</h4>
+                                <p class="text-gray-500">国家级三等奖</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">
+                            2023年，我院学生在蓝桥杯全国软件和信息技术专业人才大赛中荣获国家级三等奖。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-trophy text-yellow-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">江西省大学生科技创新与职业技能竞赛</h4>
+                                <p class="text-gray-500">省级一等奖</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">
+                            2024年，我院学生团队在江西省大学生科技创新与职业技能竞赛中荣获省级一等奖。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-trophy text-yellow-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">江西省大学生物联网创新应用设计竞赛</h4>
+                                <p class="text-gray-500">省级一等奖</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">
+                            2023年，我院学生团队在江西省大学生物联网创新应用设计竞赛中荣获省级一等奖。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 咨询报名 -->
+    <section class="py-16 bg-primary">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold font-inter text-white mb-4">了解更多办学特色</h2>
+            <p class="text-white/90 max-w-3xl mx-auto mb-8">
+                如果您对我们的办学特色有任何疑问，或者想了解更多关于学院的信息，请随时联系我们
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" class="bg-white hover:bg-gray-100 text-primary px-6 py-3 rounded-full font-medium transition-all shadow-lg flex items-center justify-center">
+                    联系我们 <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+                <a href="majors.html" class="bg-transparent hover:bg-white/10 text-white border-2 border-white px-6 py-3 rounded-full font-medium transition-all flex items-center justify-center">
+                    查看专业设置 <i class="fa fa-book ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                            <i class="fa fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold font-inter">数字技术应用产业学院</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        政校企协同育人，培养高素质数字产业人才
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-qq"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="overview.html" class="text-gray-400 hover:text-white transition-colors">学院概况</a></li>
+                        <li><a href="features.html" class="text-gray-400 hover:text-white transition-colors">办学特色</a></li>
+                        <li><a href="majors.html" class="text-gray-400 hover:text-white transition-colors">专业设置</a></li>
+                        <li><a href="research.html" class="text-gray-400 hover:text-white transition-colors">科研成果</a></li>
+                        <li><a href="students.html" class="text-gray-400 hover:text-white transition-colors">学生发展</a></li>
+                        <li><a href="future.html" class="text-gray-400 hover:text-white transition-colors">未来规划</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">相关资源</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">上饶师范学院官网</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">信州区人民政府</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">江西移动上饶分公司</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">教育部</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">江西省教育厅</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">联系方式</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                            <span class="text-gray-400">江西省上饶市信州区数字经济产业示范园</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-phone text-primary mt-1 mr-2"></i>
+                            <span class="text-gray-400">0793-12345678</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope text-primary mt-1 mr-2"></i>
+                            <span class="text-gray-400">digital@srnu.edu.cn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>© 2024 上饶师范学院数字技术应用产业学院. 版权所有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all opacity-0 invisible">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-primary', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+                
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('bg-primary', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+                
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        // 移动端菜单
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // 返回顶部
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
+    
